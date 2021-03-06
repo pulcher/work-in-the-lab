@@ -29,7 +29,7 @@
 
 // Constants
 const int SENSOR_PIN = A0;  // Input pin for measuring Vout
-const float RS = 0.20;          // Shunt resistor value (in ohms)
+const float RS = 0.10;          // Shunt resistor value (in ohms)
 const float VOLTAGE_REF = 3.3;  // Reference voltage for analog read
 
 // Global Variables
@@ -48,15 +48,15 @@ void setup() {
 
 void loop() {
 
-  calcedDenominator = 100.0 * RS;
+  calcedDenominator = 10.0 * RS;
   //Serial.print(calcedDenominator, 10);
   //Serial.println(" denominator");
   
   // Read a value from the INA169 board
   sensorValue = analogRead(SENSOR_PIN);
 
-  //Serial.print(sensorValue, 10);
-  //Serial.println(" raw");
+  Serial.print(sensorValue, 10);
+  Serial.println(" raw");
 
   // Remap the ADC value into a voltage number: 5, 3V3, or 1V1
   normalizedSensorValue = (sensorValue * VOLTAGE_REF) / 1023;
